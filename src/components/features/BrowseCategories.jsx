@@ -1,13 +1,16 @@
+import { categoryCover } from "../../utils/assetLoader";
+
+
 export default function BrowseCategories() {
   const categories = [
-    { id: 1, name: "Pop", image: "/src/assets/images/categories/pop-cat.jpg" },
-    { id: 2, name: "Rock", image: "/src/assets/images/categories/rock-cat.jpg" },
-    { id: 3, name: "Jazz", image: "/src/assets/images/categories/jazz-cat.jpg" },
-    { id: 4, name: "Classical", image: "/src/assets/images/categories/classical-cat.jpg" },
-    { id: 5, name: "Hip-Hop", image: "/src/assets/images/categories/hiphop-cat.jpg" },
-    { id: 6, name: "Electronic", image: "/src/assets/images/categories/electronic-cat.jpg" },
-    { id: 7, name: "Country", image: "/src/assets/images/categories/country-cat.jpg" },
-    { id: 8, name: "Reggae", image: "/src/assets/images/categories/reggae-cat.jpg" },
+    { id: 1, name: "Pop", image: categoryCover["pop-cat"] },
+    { id: 2, name: "Rock", image: categoryCover["rock-cat"] },
+    { id: 3, name: "Jazz", image: categoryCover["jazz-cat"] },
+    { id: 4, name: "Classical", image: categoryCover["classical-cat"] },
+    { id: 5, name: "Hip-Hop", image: categoryCover["hiphop-cat"] },
+    { id: 6, name: "Electronic", image: categoryCover["electronic-cat"] },
+    { id: 7, name: "Country", image: categoryCover["country-cat"] },
+    { id: 8, name: "Reggae", image: categoryCover["reggae-cat"] },
   ];
 
   return (
