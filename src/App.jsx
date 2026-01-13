@@ -3,7 +3,7 @@ import Homepage from "./pages/Home.jsx";
 import SearchArea from "./pages/SearchArea.jsx";
 import MusicLibrary from "./pages/MusicLibrary";
 import MainLayout from "./layouts/MainLayout.jsx";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import LikedSongs from "./pages/LikedSongs.jsx";
 
 function App() {
