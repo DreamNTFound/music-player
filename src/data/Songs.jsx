@@ -1,4 +1,4 @@
-import { audioMap, coverImage } from "../utils/audioLoader";
+import { audioMap, coverImage } from "../utils/assetLoader";
 
 export const SoundTracks = [
   {

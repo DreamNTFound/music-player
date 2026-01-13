@@ -1,6 +1,6 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import { audioMap, coverImage } from "../utils/audioLoader";
+import { audioMap, coverImage } from "../utils/assetLoader";
 
 export const FeaturedTracks = [
     {
