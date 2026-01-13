@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SonicWaveCover from "../../assets/images/music-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -66,8 +67,8 @@ export default function Sidebar({ setlibraryItems }) {
       {/* Logo */}
       <div className="mt-6 flex items-center justify-center">
         <img
-          src="/src/assets/images/music-logo.png"
-          alt="Logo"
+          src={SonicWaveCover}
+          alt={SonicWaveCover}
           className="w-10 h-10 rounded-md"
         />
         {!collapsed && (
