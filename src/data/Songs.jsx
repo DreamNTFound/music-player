@@ -1,11 +1,13 @@
+import { audioMap, coverImage } from "../utils/audioLoader";
+
 export const SoundTracks = [
   {
     id: 1,
     title: "Everest",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Everest.mp3",
+    cover: coverImage,
+    audio: audioMap["everest"],
     duration: 147,
   },
 
@@ -14,8 +16,8 @@ export const SoundTracks = [
     title: "Mask",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Mask.mp3",
+    cover: coverImage,
+    audio: audioMap["mask"],
     duration: 173,
   },
 
@@ -24,8 +26,8 @@ export const SoundTracks = [
     title: "Paranoid",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Paranoid.mp3",
+    cover: coverImage,
+    audio: audioMap["paranoid"],
     duration: 114,
   },
 
@@ -34,8 +36,8 @@ export const SoundTracks = [
     title: "Roadtrip",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Roadtrip.mp3",
+    cover: coverImage,
+    audio: audioMap["roadtrip"],
     duration: 134,
   },
 
@@ -44,8 +46,8 @@ export const SoundTracks = [
     title: "Slow Down",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Slow_Down.mp3",
+    cover: coverImage,
+    audio: audioMap["slow_down"],
     duration: 154,
   },
 
@@ -54,8 +56,8 @@ export const SoundTracks = [
     title: "Spotlight",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Spotlight.mp3",
+    cover: coverImage,
+    audio: audioMap["spotlight"],
     duration: 166,
   },
 
@@ -64,8 +66,8 @@ export const SoundTracks = [
     title: "Until I End Up Dead",
     artist: "Dream Music",
     album: "to whoever wants to hear",
-    cover: "/src/assets/images/dream-music.png",
-    audio: "/src/components/song/Until_I_End_Up_Dead.mp3",
+    cover: coverImage,
+    audio: audioMap["until_i_end_up_dead"],
     duration: 161,
   },
 ];
