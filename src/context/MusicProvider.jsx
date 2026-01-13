@@ -55,7 +55,7 @@ export function MusicProvider({ children }) {
     
     audio.addEventListener("loadedmetadata", applyVolume);
     return () => {
-      audio.addEventListener("loadedmetadata", applyVolume);
+      audio.removeEventListener("loadedmetadata", applyVolume);
     }
   }, [volume]);
 
