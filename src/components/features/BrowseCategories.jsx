@@ -1,7 +1,7 @@
 import { categoryCover } from "../../utils/assetLoader";
 
 
-export default function BrowseCategories() {
+export default function BrowseCategories() {  
   const categories = [
     { id: 1, name: "Pop", image: categoryCover["pop-cat"] },
     { id: 2, name: "Rock", image: categoryCover["rock-cat"] },
@@ -15,7 +15,7 @@ export default function BrowseCategories() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <p className="col-span-full text-2xl font-bold">Browse All</p>
+      <p className="col-span-full text-2xl font-bold text-white">Browse All</p>
       {categories.map((cat) => (
         <div
           key={cat.id}
