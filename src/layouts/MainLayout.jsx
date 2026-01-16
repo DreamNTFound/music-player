@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import Sidebar from "../components/sidebar/Sidebar.jsx";
+import Sidebar from "../components/navigation/Sidebar.jsx";
 import { Outlet, useLocation } from "react-router-dom";
 import PlayerBar from "../components/player/PlayerBar.jsx";
 import { useMusic } from "../hooks/useMusic.jsx";
 import { LikedSongsModel } from "../models/LibraryModels.jsx";
 import { loadLibrary, saveLibrary } from "../utils/localStorage.js";
 import { SoundTracks } from "./../data/Songs";
+import TopNavBar from "../components/navigation/TopNavbar.jsx";
 
 export default function MainLayout() {
   const { currentTrack, likedTrackIds } = useMusic();
@@ -36,25 +37,37 @@ export default function MainLayout() {
 
   return (
     <>
-      <div className="h-screen w-screen flex overflow-hidden">
-        {/* Sidebar */}
-        <Sidebar
-          libraryItems={libraryItems}
-          setlibraryItems={setLibraryItems}
-        />
-        <div className="flex-1 min-w-0 flex flex-col">
-          {/* Main Content */}
-          <main className="flex-1 overflow-y-auto overflow-x-hidden p-6 pb-28 max-w-full bg-[#1a1a1a]">
-            <div key={location.pathname} className="animate-fade-in">
-              <Outlet context={{ libraryItems : libraryItemsWithLikes }} />
-            </div>
-          </main>
-          {/* FOOTER PLAYER */}
-          {currentTrack && (
-            <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 flex items-center justify-between">
-              <PlayerBar />
-            </div>
-          )}
+      <div className="h-screen w-screen flex flex-col overflow-hidden">
+        {/* Mobile TopNav */}
+        <div className="md:hidden sticky top-0 z-40">
+          <TopNavBar />
+        </div>
+
+        {/* BODY */}
+        <div className="flex flex-1 overflow-hidden">
+          
+          {/* Desktop Sidebar */}
+          <aside className="hidden md:flex flex-shrink-0 bg-black overflow-visible">
+            <Sidebar
+              libraryItems={libraryItems}
+              setlibraryItems={setLibraryItems}
+            />
+          </aside>
+          {/* Right Side */}
+          <div className="flex-1 min-w-0 flex flex-col">
+            {/* Main Content */}
+            <main className="flex-1 overflow-y-auto overflow-x-hidden px-6 md:p-6 pt-6 md:pt-6 pb-28 max-w-full bg-[#1a1a1a]">
+              <div key={location.pathname} className="animate-fade-in">
+                <Outlet context={{ libraryItems: libraryItemsWithLikes }} />
+              </div>
+            </main>
+            {/* FOOTER PLAYER */}
+            {currentTrack && (
+              <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 flex items-center justify-between">
+                <PlayerBar />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
