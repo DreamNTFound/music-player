@@ -42,7 +42,7 @@ export default function LikedSongs() {
       </div>
 
       {/* Songs Table */}
-      <div className="w-full">
+      <div className="">
         <TrackList tracks={likedTracks}/>
       </div>
     </div>

@@ -10,7 +10,7 @@ export default function MusicLibrary() {
     <>
       <div className="p-4">
         <div className="p-4 border-b border-gray-800">
-          <h1 className="!text-2xl font-bold">Your Library</h1>
+          <h1 className="!text-2xl font-bold text-white">Your Library</h1>
         </div>
 
         <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
