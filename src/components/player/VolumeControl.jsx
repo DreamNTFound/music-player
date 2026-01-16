@@ -10,7 +10,7 @@ export default function VolumeControl() {
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center">
       <FontAwesomeIcon icon={faVolumeHigh} />
       <input
         type="range"

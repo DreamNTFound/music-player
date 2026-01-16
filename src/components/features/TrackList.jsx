@@ -3,13 +3,15 @@ import { faHeart, faClock } from "@fortawesome/free-solid-svg-icons";
 import { formatTime } from "../../utils/formatTime.js";
 import { useMusic } from "../../hooks/useMusic.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useWindowWidth from "../../utils/useWindowWidth.js";
 
 export default function TrackList({ tracks }) {
   const { playTrack, currentTrack, toggleLike, likedTrackIds } = useMusic();
+  const windowWidth = useWindowWidth();
 
   const columns = [
     {
-      name: <div className="w-full items-center">#</div>,
+      name: <div className="w-full flex justify-center">#</div>,
       width: "60px",
       cell: (row, index) => {
         const isCurrent = currentTrack?.id === row.id;
@@ -21,36 +23,59 @@ export default function TrackList({ tracks }) {
           </span>
         );
       },
+      style: {
+        justifyContent: "center",
+      },
     },
 
     {
-      name: <div className="w-full items-left">Title</div>,
+      name: (
+        <div className="w-full text-center sm:text-left">
+          <span>Title</span>
+        </div>
+      ),
+      selector: (row) => row.title,
       cell: (row) => (
         <div className="flex items-center space-x-3">
           <img
             src={row.cover}
             alt={row.title}
-            className="w-10 h10 rounded object-cover"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded object-cover flex-shrink-0"
           />
 
-          <div className="flex flex-col">
-            <span className="font-medium text-base text-gray-200">
+          <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+            <span className="font-medium text-white text-gray-200 !text-sm sm:text-base truncate">
               {row.title}
             </span>
-            <span className="text-gray-400 text-xs">{row.artist}</span>
+            <span className="text-gray-400 text-xs sm:text-sm truncate">
+              {row.artist}
+            </span>
           </div>
         </div>
       ),
+      style: {
+        minWidth: "200px",
+      },
     },
 
-    {
-      name: (
-        <div className="w-full flex items-center justify-center">Album</div>
-      ),
-      cell: (row) => (
-        <div className="w-full text-center text-gray-400">{row.album}</div>
-      ),
-    },
+    ...(windowWidth >= 640
+      ? [
+          {
+            name: (
+              <div className="hidden sm:flex w-full flex items-center justify-center">
+                Album
+              </div>
+            ),
+            cell: (row) => (
+              <div className="hidden sm:flex w-full text-center justify-center text-gray-400">
+                {row.album}
+              </div>
+            ),
+            style: { minWidth: 120 },
+            omit: typeof window !== "undefined" && window.innerWidth < 640,
+          },
+        ]
+      : []),
 
     {
       name: (
@@ -63,8 +88,8 @@ export default function TrackList({ tracks }) {
           {formatTime(row.duration)}
         </div>
       ),
+      style: { minWidth: "60px" },
     },
-
     {
       name: "",
       width: "60px",

@@ -19,30 +19,37 @@ export default function PlayerBar() {
   //console.log("Rendering PlayerBar:", { currentTrack, isPlaying });
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-black bg-opacity-90 text-white p-4 flex items-center justify-between z-50 shadow-lg">
+    <div className="fixed bottom-0 left-0 w-full bg-black bg-opacity-90 text-white p-3 sm:p-4 md:p-5 flex items-center z-50 shadow-lg">
+      
       {/* Track Info */}
-
-      <div className="flex items-center space-x-4 w-1/4">
+      <div className="flex items-center gap-3 flex-1 min-w-[140px] max-w-[280px]">
         {currentTrack && (
           <img
             src={currentTrack.cover}
             alt={currentTrack.title}
-            className="w-14 h-14 rounded-lg object-cover shadow-md"
+            className="w-12 h-12 md:w-14 md:h-14 rounded-lg object-cover shadow-md flex-shrink-0"
           />
         )}
-        <div>
-          <p className="font-semibold">{currentTrack?.title || "No Track"}</p>
-          <p className="text-sm text-gray-400">{currentTrack?.artist}</p>
+        <div className="min-w-0">
+          <p className="font-semibold truncate">
+            {currentTrack?.title || "No Track"}
+          </p>
+          <p className="text-sm text-gray-400 truncate">
+            {currentTrack?.artist}
+          </p>
         </div>
       </div>
 
       {/* Controls + ProgressBar */}
-      <div className="w-2/4 flex flex-col items-center">
-        <div className="flex items-center space-x-6 mb-2">
-          <FontAwesomeIcon
-            icon={faShuffle}
-            className="text-gray-400 hover:text-white cursor-pointer"
-          />
+      <div className="flex flex-col items-center flex-2 mx-2 sm:mx-4 min-w-[200px]">
+        <div className="flex items-center gap-5 mb-1">
+          {/* Shuffle (hidden on mobile) */}
+          <div className="hidden sm:block">
+            <FontAwesomeIcon
+              icon={faShuffle}
+              className="text-gray-400 hover:text-white cursor-pointer"
+            />
+          </div>
 
           {/* Backward Button */}
           <button
@@ -73,24 +80,28 @@ export default function PlayerBar() {
               className="text-gray-300 hover:text-white cursor-pointer"
             />
           </button>
-
-          <FontAwesomeIcon
-            icon={faRepeat}
-            className="text-gray-400 hover:text-white cursor-pointer"
-          />
+          {/* Repeat (hidden on mobile) */}
+          <div className="hidden sm:block">
+            <FontAwesomeIcon
+              icon={faRepeat}
+              className="text-gray-400 hover:text-white cursor-pointer"
+            />
+          </div>
         </div>
-
-        <ProgressBar />
+        <div className="w-full px-2">
+          <ProgressBar />
+        </div>
       </div>
 
       {/* Volume Control */}
-      <div className="w-1/4 flex items-center justify-end space-x-6 text-gray-300">
+      <div className="hidden md:flex items-center gap-4 flex-shrink-0 min-w-[280px] justify-end text-gray-300">
         <FontAwesomeIcon
           icon={faList}
           className="hover:text-white cursor-pointer"
         />
-
-        <VolumeControl />
+        <div className="min-w-[120px]">
+          <VolumeControl />
+        </div>
 
         <FontAwesomeIcon
           icon={faExpand}

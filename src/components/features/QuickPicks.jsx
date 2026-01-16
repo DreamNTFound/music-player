@@ -10,7 +10,7 @@ export default function QuickPicks() {
           Quick Picks
         </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 truncate">
           {recommendation.map((quick_picks) => (
             <button
               key={quick_picks.id}
@@ -21,7 +21,7 @@ export default function QuickPicks() {
                 src={quick_picks.cover}
                 className="w-14 h-14 rounded-lg object-cover"
               />
-              <div className="ml-4">
+              <div className="ml-4 truncate">
                 <p className="text-white dark:text-white font-medium">{quick_picks.title}</p>
               </div>
             </button>
