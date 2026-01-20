@@ -159,7 +159,7 @@ export default function TrackList({ tracks }) {
 
   return (
     <div className="mt-6">
-      <h2 className="text-white font-extrabold text-2xl mt-8 mb-8">
+      <h2 className="text-white font-extrabold text-xl sm:text-2xl mt-8 mb-4">
         All Tracks
       </h2>
 
