@@ -72,7 +72,7 @@ export default function QuickPicks() {
       </section> */}
 
       <section className="mt-6">
-        <h2 className="text-white font-extrabold text-2xl mt-8 mb-6">
+        <h2 className="text-white font-extrabold text-xl sm:text-2xl mt-8 mb-4">
           Quick Picks
         </h2>
         <div className="relative">
