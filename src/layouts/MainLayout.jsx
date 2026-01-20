@@ -7,10 +7,12 @@ import { LikedSongsModel } from "../models/LibraryModels.jsx";
 import { loadLibrary, saveLibrary } from "../utils/localStorage.js";
 import { SoundTracks } from "./../data/Songs";
 import TopNavBar from "../components/navigation/TopNavbar.jsx";
+import CreatePlaylistModal from "../components/modals/CreatePlaylistModal";
 
 export default function MainLayout() {
   const { currentTrack, likedTrackIds } = useMusic();
   const location = useLocation();
+  const [isCreatePLModalOpen, setIsCreatePLModalOpen] = useState(false);
   //const params = useParams(); // Get item id from URL
 
   // Initialize libraryItems from localStorage or default Liked Songs
@@ -35,6 +37,11 @@ export default function MainLayout() {
     return item; // playlist/folders remains unchanged
   });
 
+  const handleCreateLibraryItem = (items) => {
+    //console.log("Creating playlist:", items);
+    setLibraryItems((prev) => [...prev, items]);
+  };
+
   return (
     <>
       <div className="h-screen w-screen flex flex-col overflow-hidden">
@@ -45,12 +52,14 @@ export default function MainLayout() {
 
         {/* BODY */}
         <div className="flex flex-1 overflow-hidden">
-          
           {/* Desktop Sidebar */}
           <aside className="hidden md:flex flex-shrink-0 bg-black overflow-visible">
             <Sidebar
               libraryItems={libraryItems}
               setlibraryItems={setLibraryItems}
+              isCreatePLModalOpen={isCreatePLModalOpen}
+              setIsCreatePLModalOpen={setIsCreatePLModalOpen}
+              handleCreateLibraryItem={handleCreateLibraryItem}
             />
           </aside>
           {/* Right Side */}
@@ -58,7 +67,12 @@ export default function MainLayout() {
             {/* Main Content */}
             <main className="flex-1 overflow-y-auto px-6 md:p-6 pt-6 md:pt-6 pb-28 md:pb-28 max-w-full bg-[#1a1a1a]">
               <div key={location.pathname} className="animate-fade-in">
-                <Outlet context={{ libraryItems: libraryItemsWithLikes }} />
+                <Outlet
+                  context={{
+                    libraryItems: libraryItemsWithLikes,
+                    setIsCreatePLModalOpen,
+                  }}
+                />
               </div>
               <div className="bg-gray-800"></div>
             </main>
@@ -70,6 +84,13 @@ export default function MainLayout() {
             )}
           </div>
         </div>
+
+        {/* Create Playlist Modal */}
+        <CreatePlaylistModal
+          isOpen={isCreatePLModalOpen}
+          onClose={() => setIsCreatePLModalOpen(false)}
+          onCreate={handleCreateLibraryItem}
+        />
       </div>
     </>
   );
