@@ -94,7 +94,7 @@ export default function PlayerBar() {
       </div>
 
       {/* Volume Control */}
-      <div className="hidden md:flex items-center gap-4 flex-shrink-0 min-w-[280px] justify-end text-gray-300">
+      <div className="hidden md:flex items-center gap-4 flex-shrink-0 min-w-[240px] justify-end text-gray-300">
         <FontAwesomeIcon
           icon={faList}
           className="hover:text-white cursor-pointer"
