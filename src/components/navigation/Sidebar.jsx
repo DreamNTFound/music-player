@@ -14,7 +14,16 @@ import { NavLink } from "react-router-dom";
 import CreatePlaylistModal from "../modals/CreatePlaylistModal.jsx";
 
 export default function Sidebar({ setlibraryItems }) {
-  const [collapsed, setCollapsed] = useState(true);
+  const getInitialCollapsed = () => {
+    if(typeof window !== "undefined") {
+      const width = window.innerWidth;
+      if (width >= 768 && width < 1024) return true; // Show collapsed if tablet
+      if (width >= 1024) return false; // Hides collapsed if laptop+
+    }
+    return true; // fallback (tablet default)
+  }
+
+  const [collapsed, setCollapsed] = useState(getInitialCollapsed);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle creating a new playlist (by the Modal)
@@ -56,7 +65,8 @@ export default function Sidebar({ setlibraryItems }) {
         flex items-center justify-center
         shadow-md hover:scale-105
         transition-all duration-300
-        z-50 !outline-none"
+        z-50 !outline-none
+        md:block lg:hidden"
       >
         <FontAwesomeIcon
           icon={collapsed ? faChevronRight : faChevronLeft}
