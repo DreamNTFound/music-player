@@ -13,7 +13,7 @@ import {
 import { NavLink } from "react-router-dom";
 import CreatePlaylistModal from "../modals/CreatePlaylistModal.jsx";
 
-export default function Sidebar({ setlibraryItems }) {
+export default function Sidebar({ setIsCreatePLModalOpen }) {
   const getInitialCollapsed = () => {
     if(typeof window !== "undefined") {
       const width = window.innerWidth;
@@ -24,13 +24,9 @@ export default function Sidebar({ setlibraryItems }) {
   }
 
   const [collapsed, setCollapsed] = useState(getInitialCollapsed);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle creating a new playlist (by the Modal)
-  const handleCreateLibraryItem = (items) => {
-    //console.log("Creating playlist:", items);
-    setlibraryItems((prev) => [...prev, items]);
-  };
+  
 
   const sections = [
     {
@@ -104,7 +100,7 @@ export default function Sidebar({ setlibraryItems }) {
                   return (
                     <button
                       key={idx}
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={() => setIsCreatePLModalOpen(true)}
                       className="flex items-center gap-3 !px-3 !py-2 rounded-md transition text-white !bg-gray-800/70 hover:!bg-purple-700/30 hover:scale-105"
                     >
                       <FontAwesomeIcon
@@ -145,12 +141,6 @@ export default function Sidebar({ setlibraryItems }) {
           </div>
         ))}
       </nav>
-      {/* Create Playlist Modal */}
-      <CreatePlaylistModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onCreate={handleCreateLibraryItem}
-      />
     </div>
   );
 }
