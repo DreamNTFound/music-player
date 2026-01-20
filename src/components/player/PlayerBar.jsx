@@ -19,42 +19,41 @@ export default function PlayerBar() {
   //console.log("Rendering PlayerBar:", { currentTrack, isPlaying });
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-black bg-opacity-90 text-white p-3 sm:p-4 md:p-5 flex items-center z-50 shadow-lg">
-      
+    <div className="fixed bottom-0 left-0 w-full bg-black bg-opacity-90 text-white p-3 sm:p-4 md:p-5 z-50 shadow-lg">
       {/* Track Info */}
-      <div className="flex items-center gap-3 flex-1 min-w-[140px] max-w-[280px]">
-        {currentTrack && (
-          <img
-            src={currentTrack.cover}
-            alt={currentTrack.title}
-            className="w-12 h-12 md:w-14 md:h-14 rounded-lg object-cover shadow-md flex-shrink-0"
-          />
-        )}
-        <div className="min-w-0">
-          <p className="font-semibold truncate">
-            {currentTrack?.title || "No Track"}
-          </p>
-          <p className="text-sm text-gray-400 truncate">
-            {currentTrack?.artist}
-          </p>
+      <div className="flex items-center justify-between w-full">
+        <div className="flex items-center gap-3 flex-[1.2] min-w-0">
+          {currentTrack && (
+            <img
+              src={currentTrack.cover}
+              alt={currentTrack.title}
+              className="w-12 h-12 md:w-14 md:h-14 rounded-lg object-cover shadow-md flex-shrink-0"
+            />
+          )}
+          <div className="min-w-0 flex flex-col">
+            <p className="marquee font-semibold truncate !text-sm md:!text-base">
+              <span>{currentTrack?.title || "No Track"}</span>
+            </p>
+            <p className="marquee text-sm text-gray-400 truncate !text-xs md:!text-sm">
+              <span>{currentTrack?.artist}</span>
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Controls + ProgressBar */}
-      <div className="flex flex-col items-center flex-2 mx-2 sm:mx-4 min-w-[200px]">
-        <div className="flex items-center gap-5 mb-1">
-          {/* Shuffle (hidden on mobile) */}
-          <div className="hidden sm:block">
+        {/* Controls + ProgressBar */}
+        <div className="flex items-center gap-3 flex-[1]">
+          {/* Shuffle */}
+          <button className="w-8 h-8 !p-0 !bg-transparent focus:!outline-none !border-none hover:scale-110 transition">
             <FontAwesomeIcon
               icon={faShuffle}
               className="text-gray-400 hover:text-white cursor-pointer"
             />
-          </div>
+          </button>
 
           {/* Backward Button */}
           <button
             onClick={playPrevTrack}
-            className="!p-0 !bg-transparent !outline-none !border-none hover:scale-110 transition"
+            className="w-8 h-8 !p-0 !bg-transparent focus:!outline-none !border-none hover:scale-110 transition"
           >
             <FontAwesomeIcon
               icon={faBackward}
@@ -65,7 +64,7 @@ export default function PlayerBar() {
           {/* Play Button */}
           <button
             onClick={togglePlay}
-            className="w-10 h-10 !bg-white text-black !rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
+            className="w-12 h-12 !bg-white text-black !rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
           >
             <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
           </button>
@@ -73,40 +72,43 @@ export default function PlayerBar() {
           {/* Forward Button */}
           <button
             onClick={playNextTrack}
-            className="!p-0 !bg-transparent !outline-none !border-none hover:scale-110 transition"
+            className="w-8 h-8 !p-0 !bg-transparent focus:!outline-none !border-none hover:scale-110 transition"
           >
             <FontAwesomeIcon
               icon={faForward}
               className="text-gray-300 hover:text-white cursor-pointer"
             />
           </button>
-          {/* Repeat (hidden on mobile) */}
-          <div className="hidden sm:block">
+
+          {/* Repeat */}
+          <button className="w-8 h-8 !p-0 !bg-transparent focus:!outline-none !border-none hover:scale-110 transition">
             <FontAwesomeIcon
               icon={faRepeat}
               className="text-gray-400 hover:text-white cursor-pointer"
             />
-          </div>
+          </button>
         </div>
-        <div className="w-full px-2">
-          <ProgressBar />
+
+        {/* Volume Control */}
+        <div className="flex items-center gap-4 flex-shrink-0 min-w-[50px] justify-end text-gray-300">
+          <FontAwesomeIcon
+            icon={faList}
+            className="hover:text-white cursor-pointer"
+          />
+          <div className="hidden md:flex items-center gap-4">
+            <div className="min-w-[120px]">
+              <VolumeControl />
+            </div>
+            <FontAwesomeIcon
+              icon={faExpand}
+              className="hover:text-white cursor-pointer"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Volume Control */}
-      <div className="hidden md:flex items-center gap-4 flex-shrink-0 min-w-[240px] justify-end text-gray-300">
-        <FontAwesomeIcon
-          icon={faList}
-          className="hover:text-white cursor-pointer"
-        />
-        <div className="min-w-[120px]">
-          <VolumeControl />
-        </div>
-
-        <FontAwesomeIcon
-          icon={faExpand}
-          className="hover:text-white cursor-pointer"
-        />
+      <div className="w-full mt-2 px-2">
+        <ProgressBar />
       </div>
     </div>
   );
