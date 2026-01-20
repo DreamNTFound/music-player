@@ -56,14 +56,15 @@ export default function MainLayout() {
           {/* Right Side */}
           <div className="flex-1 min-w-0 flex flex-col">
             {/* Main Content */}
-            <main className="flex-1 overflow-y-auto overflow-x-hidden px-6 md:p-6 pt-6 md:pt-6 pb-28 max-w-full bg-[#1a1a1a]">
+            <main className="flex-1 overflow-y-auto px-6 md:p-6 pt-6 md:pt-6 pb-28 md:pb-28 max-w-full bg-[#1a1a1a]">
               <div key={location.pathname} className="animate-fade-in">
                 <Outlet context={{ libraryItems: libraryItemsWithLikes }} />
               </div>
+              <div className="bg-gray-800"></div>
             </main>
             {/* FOOTER PLAYER */}
             {currentTrack && (
-              <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 flex items-center justify-between">
+              <div className="bg-gray-900 text-white p-4 flex items-center justify-between">
                 <PlayerBar />
               </div>
             )}
